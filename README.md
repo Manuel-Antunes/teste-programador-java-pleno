@@ -1,4 +1,4 @@
-# Desafio de Programação Java Jr.
+# Desafio de Programação Java Pleno.
 
 # O que preciso fazer?
 
@@ -11,9 +11,10 @@ Vamos ser práticos e diretos, se você quer trabalhar conosco siga os passos ab
 
 # Desafio de Clientes, Produtos e Pedidos
 
-Você deverá criar uma aplicação para cadastramento de clientes, produtos e pedidos:
+Você deverá criar 2 aplicações para cadastramento de clientes, produtos e pedidos:
 
 **Back-end:** aplicação JavaEE baseada em Web Services no padrão RESTful JAX-RS.
+**Front-end:** Single Page Application que se comunique com estes serviços.
 
 **Requisitos:**
 
@@ -61,6 +62,12 @@ Escolha umas das opções abaixo para implementar sua solução. A modelagem dos
 * Aplicação pura Java EE (não utilize Spring, Struts, EJB, etc)
 * RESTful API JAX-RS utilizando Servlets ou framework Jersey
 * Banco de dados SQL (MySQL, PostgreSQL, HSQLDB) com JPA
+
+####  FRONT-END
+* Single Page Application utilizando apenas HTML5 e CSS3
+* Javascript puro / JQuery (e plugins)
+* Vue.js (será diferencial)
+* Bootstrap (http://getbootstrap.com/)
 
 **Recomendações gerais:**
 
