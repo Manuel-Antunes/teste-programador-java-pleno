@@ -14,6 +14,7 @@ Vamos ser práticos e diretos, se você quer trabalhar conosco siga os passos ab
 Você deverá criar 2 aplicações para cadastramento de clientes, produtos e pedidos:
 
 **Back-end:** aplicação JavaEE baseada em Web Services no padrão RESTful JAX-RS.
+
 **Front-end:** Single Page Application que se comunique com estes serviços.
 
 **Requisitos:**
