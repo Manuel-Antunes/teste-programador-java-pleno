@@ -1,0 +1,38 @@
+{
+    "clients": [],
+    "products": [
+        {
+            "id": 1,
+            "unities": 3,
+            "name": "Botijão de gás",
+            "price": 12
+        },
+        {
+            "id": 2,
+            "unities": 4,
+            "name": "Galão de água",
+            "price": 7
+        },
+        {
+            "id": 3,
+            "unities": 5,
+            "name": "Gelo (1kg)",
+            "price": 5
+        },
+        {
+            "id": 4,
+            "unities": 97,
+            "name": "CD Calcinha Preta - Volume 11",
+            "price": 999
+        },
+        {
+            "id": 5,
+            "unities": 43,
+            "name": "CD Banda Dejavu e DJ Juininho Portugal",
+            "price": 999
+        }
+
+
+    ],
+    "orders": []
+}
