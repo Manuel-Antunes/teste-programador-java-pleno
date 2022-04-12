@@ -10,6 +10,7 @@ export default {
 
 <template>
   <Navbar />
+  <router-view />
 </template>
 
 <style>
