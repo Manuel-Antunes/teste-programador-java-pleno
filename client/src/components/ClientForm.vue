@@ -5,19 +5,19 @@
           <form>
             <label for="name" class="form-label"></label>
             <div class="input-group">
-              <input type="text" id="name" class="form-control" placeholder="Nome" />
+              <input type="text" id="name" class="form-control" v-model="name" placeholder="Nome" />
             </div>
             <label for="cpf" class="form-label"></label>
             <div class="input-group">
-              <input type="text" id="cpf" class="form-control" placeholder="CPF"/>
+              <input type="text" id="cpf" class="form-control" v-model="cpf" placeholder="CPF"/>
             </div>
             <label for="phone" class="form-label"></label>
             <div class="input-group">
-              <input type="tel" id="phone" class="form-control" placeholder="Telefone" />
+              <input type="tel" id="phone" class="form-control" v-model="phone" placeholder="Telefone" />
             </div>
             <label for="email" class="form-label"></label>
             <div class="input-group">
-              <input type="text" id="email" class="form-control" placeholder="Email" />
+              <input type="text" id="email" class="form-control" v-model="email" placeholder="Email" />
             </div>
             <div class="mt-4 text-center">
               <button type="submit" class="btn btn-secondary">Submit</button>
