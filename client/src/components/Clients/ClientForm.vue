@@ -2,7 +2,7 @@
   <div class="container-lg">
       <div class="row justify-content-center">
         <div class="col-lg-6">
-          <form>
+          <form @submit="createClient" method="PUT">
             <label for="name" class="form-label"></label>
             <div class="input-group">
               <input type="text" id="name" class="form-control" v-model="name" placeholder="Nome" />
@@ -29,8 +29,26 @@
 </template>
 
 <script>
+import apolloClient from "../../apollo/client"
+import { createUser } from "../../apollo/mutations/createUser"
+
+
 export default {
-    name: "ClientForm"
+    name: "ClientForm",
+    methods: {
+      async createClient(e) {
+        e.preventDefault()
+
+        const dataForm = {
+          name: this.name,
+          cpf: this.cpf,
+          phone: this.phone,
+          email: this.email
+        }
+
+        const { data } = await apolloClient.mutate(createUser(dataForm))
+      }
+    }
 }
 </script>
 
