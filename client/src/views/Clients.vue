@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import ClientForm from "../components/ClientForm.vue"
-import ClientList from "../components/ClientList.vue"
+import ClientForm from "../components/Clients/ClientForm.vue"
+import ClientList from "../components/Clients/ClientList.vue"
 
 export default {
     name: "Clients",
