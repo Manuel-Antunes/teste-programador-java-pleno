@@ -2,7 +2,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
     <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
-            <img class="fluid" alt="Vue logo" src="../assets/logo.png" width="48px"/>
+            <!-- <img class="fluid" :src="logo" alt="vue" width="48px"/> -->
             Companhia do seu Zé
         </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@
 
 <script>
     export default {
-        name: "Navbar"
+        name: "Navbar",
+        props: ["logo"]
     }
 </script>

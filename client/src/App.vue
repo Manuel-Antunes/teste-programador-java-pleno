@@ -4,12 +4,17 @@ export default {
   name: "App",
   components: {
     Navbar
+  },
+  data() {
+    return {
+      logo_src: "./assets/logo.png",
+    }
   }
 }
 </script>
 
 <template>
-  <Navbar />
+  <Navbar :logo="logo_src"/>
   <router-view />
 </template>
 
