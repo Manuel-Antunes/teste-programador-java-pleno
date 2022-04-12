@@ -4,12 +4,18 @@ export default {
   name: "App",
   components: {
     Navbar
+  },
+  data() {
+    return {
+      logo_src: "./assets/logo.png",
+    }
   }
 }
 </script>
 
 <template>
-  <Navbar />
+  <Navbar :logo="logo_src"/>
+  <router-view />
 </template>
 
 <style>
@@ -17,7 +23,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>
