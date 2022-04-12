@@ -26,20 +26,20 @@ class UpdateProductMutation extends Mutation
                 'name' => 'code',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'user_name' => [
-                'name' => 'user_name',
+            'desc' => [
+                'name' => 'desc',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'cpf' => [
-                'name' => 'cpf',
+            'units' => [
+                'name' => 'units',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'phone_number' => [
-                'name' => 'phone_number',
+            'price' => [
+                'name' => 'price',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'e-mail' => [
-                'name' => 'e-mail',
+            'email' => [
+                'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
         ];
@@ -47,7 +47,7 @@ class UpdateProductMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $product = Product::findOrFail($args['code']);
+        $product = Product::where('code', $args['code'])->first();
         $product->fill($args);
         $product->save();
 

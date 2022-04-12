@@ -20,11 +20,11 @@ class UserType extends GraphQLType
     public function fields(): array
     {
         return [
-            'codigo' => [
+            'code' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'ID of quest'
+                'description' => 'User code'
             ],
-            'nome' => [
+            'user_name' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Nome do usuario'
             ],
@@ -32,16 +32,16 @@ class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Cpf do usuario'
             ],
-            'telefone' => [
+            'phone_number' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'telefone do usuario'
             ],
-            'e-mail' => [
+            'email' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'email do usuario'
             ],
-            'pedidos' => [
-                'type' => Type::listOf(GraphQL::type('Pedidos')),
+            'orders' => [
+                'type' => Type::listOf(GraphQL::type('Order')),
                 'description' => 'Lista de pedidos'
             ]
         ];

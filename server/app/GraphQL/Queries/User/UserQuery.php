@@ -26,12 +26,12 @@ class UserQuery extends Query
                 'name' => 'code',
                 'type' => Type::string(),
                 'rules' => ['required']
-            ]
+            ],
         ];
     }
 
     public function resolve($root, $args)
     {
-        return User::findOrFail($args['code']);
+        return User::where('code', $args['code'])->first();
     }
 }

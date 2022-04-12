@@ -31,7 +31,7 @@ class DeleteOrderMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $order = Order::findOrFail($args['number']);
+        $order = Order::where('number', $args['number'])->first();
 
         return  $order->delete() ? true : false;
     }

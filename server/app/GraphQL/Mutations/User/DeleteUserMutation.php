@@ -31,7 +31,7 @@ class DeleteUserMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $user = User::findOrFail($args['code']);
+        $user = User::where('code', $args['code'])->first();
 
         return  $user->delete() ? true : false;
     }

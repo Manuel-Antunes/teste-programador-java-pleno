@@ -32,6 +32,6 @@ class ProductQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Product::findOrFail($args['code']);
+        return Product::where('code', $args['code'])->first();
     }
 }

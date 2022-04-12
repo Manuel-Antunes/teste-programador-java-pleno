@@ -20,7 +20,7 @@ class User extends Model
         'user_name',
         'cpf',
         'phone_number',
-        'e-mail'
+        'email'
     ];
 
     public function orders()

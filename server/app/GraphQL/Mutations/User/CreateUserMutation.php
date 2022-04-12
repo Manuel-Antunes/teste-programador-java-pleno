@@ -22,10 +22,6 @@ class CreateUserMutation extends Mutation
     public function args(): array
     {
         return [
-            'code' => [
-                'name' => 'code',
-                'type' => Type::nonNull(Type::string()),
-            ],
             'user_name' => [
                 'name' => 'user_name',
                 'type' => Type::nonNull(Type::string()),
@@ -38,15 +34,31 @@ class CreateUserMutation extends Mutation
                 'name' => 'phone_number',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'e-mail' => [
-                'name' => 'e-mail',
+            'email' => [
+                'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
         ];
     }
 
+    protected function rules(array $args = []): array
+    {
+        return [
+            'email' => ['required', 'email'],
+            'phone_number' => ['required'],
+            'user_name' => ['required'],
+            'cpf' => ['required']
+        ];
+    }
+
     public function resolve($root, $args)
     {
+        $args['code'] = sha1(time());
+        
+        if(strlen(preg_replace( '/[^0-9]/is', '', $args['cpf'])) !== 11){
+            return null;
+        }
+
         $user = new User();
         $user->fill($args);
         $user->save();

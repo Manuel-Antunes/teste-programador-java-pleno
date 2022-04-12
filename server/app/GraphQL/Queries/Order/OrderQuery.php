@@ -32,6 +32,6 @@ class OrderQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Order::findOrFail($args['number']);
+        return Order::where('number', $args['number'])->first();
     }
 }

@@ -38,16 +38,29 @@ class UpdateUserMutation extends Mutation
                 'name' => 'phone_number',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'e-mail' => [
-                'name' => 'e-mail',
+            'email' => [
+                'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
         ];
     }
 
+    protected function rules(array $args = []): array
+    {
+        return [
+            'email' => ['required', 'email'],
+        ];
+    }
+
     public function resolve($root, $args)
     {
-        $user = User::findOrFail($args['code']);
+
+        //$args['code'] = sha1(time());
+        if(strlen(preg_replace( '/[^0-9]/is', '', $args['cpf'])) !== 11){
+            return 'cpf invalido';
+        }
+
+        $user = User::where('code', $args['code'])->first();
         $user->fill($args);
         $user->save();
 

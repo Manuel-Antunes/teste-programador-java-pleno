@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 return [
     'route' => [
         // The prefix for routes; do NOT use a leading slash!
         'prefix' => 'graphql',
 
-        // The controller/method to use in GraphQL request.
+        // The controller/method to use in GraphQL reUser.
         'controller' => \Rebing\GraphQL\GraphQLController::class . '@query',
 
         // Any middleware for the graphql route group
@@ -74,18 +74,33 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // ExampleQuery::class,
+                'user' => \App\GraphQL\Queries\User\UserQuery::class,
+                'users' => \App\GraphQL\Queries\User\UsersQuery::class,
+                'product' => \App\GraphQL\Queries\Product\ProductQuery::class,
+                'products' => \App\GraphQL\Queries\Product\ProductsQuery::class,
+                'order' => \App\GraphQL\Queries\Order\OrderQuery::class,
+                'orders' => \App\GraphQL\Queries\Order\OrdersQuery::class,
             ],
             'mutation' => [
-                // ExampleMutation::class,
+                'createUser' => \App\GraphQL\Mutations\User\CreateUserMutation::class,
+                'updateUser' => \App\GraphQL\Mutations\User\UpdateUserMutation::class,
+                'deleteUser' => \App\GraphQL\Mutations\User\DeleteUserMutation::class,
+                'createProduct' => \App\GraphQL\Mutations\Product\CreateProductMutation::class,
+                'updateProduct' => \App\GraphQL\Mutations\Product\UpdateProductMutation::class,
+                'deleteProduct' => \App\GraphQL\Mutations\Product\DeleteProductMutation::class,
+                'createOrder' => \App\GraphQL\Mutations\Order\CreateOrderMutation::class,
+                'updateOrder' => \App\GraphQL\Mutations\Order\UpdateOrderMutation::class,
+                'deleteOrder' => \App\GraphQL\Mutations\Order\DeleteOrderMutation::class,
             ],
             // The types only available in this schema
             'types' => [
-                // ExampleType::class,
+                'User' => \App\GraphQL\Types\UserType::class,
+                'Product' => \App\GraphQL\Types\ProductType::class,
+                'Order' => \App\GraphQL\Types\OrderType::class
             ],
 
             // Laravel HTTP middleware
-            'middleware' => null,
+            'middleware' => [],
 
             // Which HTTP methods to support; must be given in UPPERCASE!
             'method' => ['GET', 'POST'],
@@ -110,7 +125,7 @@ return [
         // \Rebing\GraphQL\Support\UploadType::class,
     ],
 
-    // The types will be loaded on demand. Default is to load all types on each request
+    // The types will be loaded on demand. Default is to load all types on each reUser
     // Can increase performance on schemes with many types
     // Presupposes the config type key to match the type class name property
     'lazyload_types' => true,

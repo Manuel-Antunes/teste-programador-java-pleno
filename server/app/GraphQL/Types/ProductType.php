@@ -20,25 +20,25 @@ class ProductType extends GraphQLType
     public function fields(): array
     {
         return [
-            'codigo' => [
+            'code' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Codigo do produto'
+                'description' => 'Product code'
             ],
-            'descricao' => [
+            'desc' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Descricao do produto'
+                'description' => 'Product description'
             ],
-            'unidade' => [
+            'units' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Unidade de produtos'
+                'description' => 'Product units'
             ],
-            'valor' => [
+            'price' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Valor dos produtos'
+                'description' => 'Product price'
             ],
-            'pedidos' => [
-                'type' => Type::listOf(GraphQL::type('Pedido')),
-                'description' => 'Lista de pedidos com o produto'
+            'orders' => [
+                'type' => Type::listOf(GraphQL::type('Order')),
+                'description' => 'List of orders with the product'
             ]
         ];
     }

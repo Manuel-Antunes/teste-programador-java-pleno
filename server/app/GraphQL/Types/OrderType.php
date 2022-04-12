@@ -36,7 +36,7 @@ class OrderType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Order total price'
             ],
-            'user' => [
+            'users' => [
                 'type' => GraphQL::type('User'),
                 'description' => 'Order user'
             ],

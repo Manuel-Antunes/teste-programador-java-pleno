@@ -31,7 +31,7 @@ class DeleteProductMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $product = Product::findOrFail($args['code']);
+        $product = Product::where('code', $args['code'])->first();
 
         return  $product->delete() ? true : false;
     }

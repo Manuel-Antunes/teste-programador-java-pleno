@@ -38,8 +38,8 @@ class CreateProductMutation extends Mutation
                 'name' => 'price',
                 'type' => Type::nonNull(Type::string()),
             ],
-            'e-mail' => [
-                'name' => 'e-mail',
+            'email' => [
+                'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
         ];

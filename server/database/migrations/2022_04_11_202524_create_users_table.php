@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('cpf')->unique();
             $table->string('phone_number');
-            $table->string('e-mail')->unique();
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

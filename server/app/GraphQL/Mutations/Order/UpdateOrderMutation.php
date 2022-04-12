@@ -43,7 +43,7 @@ class UpdateOrderMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $order = Order::findOrFail($args['number']);
+        $order = Order::where('number', $args['number'])->first();
         $order->fill($args);
         $order->save();
 
