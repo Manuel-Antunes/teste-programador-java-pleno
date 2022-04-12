@@ -1,6 +1,6 @@
 <template>
   <div class="container-lg">
-      <div class="row justify-content-center my-5">
+      <div class="row justify-content-center">
         <div class="col-lg-6">
           <form>
             <label for="name" class="form-label"></label>
