@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import ProductForm from "../components/ProductForm.vue"
-import ProductList from "../components/ProductList.vue"
+import ProductForm from "../components/Products/ProductForm.vue"
+import ProductList from "../components/Products/ProductList.vue"
 
 export default {
     name: "Products",
