@@ -1,10 +1,18 @@
 <template>
-  <h1>Clients Route</h1>
+  <div class="text-center mt-5">
+    <a class="btn btn-success">Adicionar novo cliente</a>
+  </div>
+  <ClientForm />
 </template>
 
 <script>
+import ClientForm from "../components/ClientForm.vue"
+
 export default {
-    name: "Clients"
+    name: "Clients",
+    components: {
+      ClientForm
+    }
 }
 </script>
 
