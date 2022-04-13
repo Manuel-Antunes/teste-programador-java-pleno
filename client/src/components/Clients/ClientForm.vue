@@ -2,7 +2,7 @@
   <div class="container-lg mt-5">
       <div class="row justify-content-center">
         <div class="col-lg-6">
-          <form @submit.prevent="createClient">
+          <form @submit.prevent="submit">
             <label for="name" class="form-label mt-1 mb-1">Nome: </label>
             <div class="input-group">
               <input type="text" id="name" class="form-control" v-model="name" placeholder="João Silva" />
@@ -29,14 +29,13 @@
 </template>
 
 <script>
-import apolloClient from "../../apollo/client"
-import { createUser } from "../../apollo/mutations/createUser"
+
 
 
 export default {
     name: "ClientForm",
     methods: {
-      async createClient() {
+      submit() {
 
         const formData = {
           name: this.name,
@@ -44,17 +43,22 @@ export default {
           phone: this.phone,
           email: this.email
         }
-        try {
-          const { data } = await apolloClient.mutate(createUser(formData))
-          this.$emit("clientCreated", data)
-        } 
-        catch(err) {
-          this.$swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: err.message,
-              })
-        }
+          this.$emit("onSubmit", formData)        
+      }
+    },
+    mounted() {
+      if(this.data) {
+        this.name = this.data.name
+        this.cpf = this.data.cpf
+        this.phone = this.data.phone
+        this.email = this.data.email
+      }
+    },
+    props: {
+      data: {
+        type: Object,
+        required: false,
+        default: undefined
       }
     }
 }
