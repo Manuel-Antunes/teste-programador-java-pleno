@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->timestamp('issue_date');
             $table->string('desc');
-            $table->string('total_price');
             $table->string('user_code');
             $table->foreign('user_code')->references('code')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->timestamps();
         });
     }
 
