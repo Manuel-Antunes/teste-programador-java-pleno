@@ -82,6 +82,7 @@ return [
                 'orders' => \App\GraphQL\Queries\Order\OrdersQuery::class,
             ],
             'mutation' => [
+                'attachProduct' => \App\GraphQL\Mutations\OrderProducts\AttachProduct::class,
                 'createUser' => \App\GraphQL\Mutations\User\CreateUserMutation::class,
                 'updateUser' => \App\GraphQL\Mutations\User\UpdateUserMutation::class,
                 'deleteUser' => \App\GraphQL\Mutations\User\DeleteUserMutation::class,
@@ -100,10 +101,10 @@ return [
             ],
 
             // Laravel HTTP middleware
-            'middleware' => [],
+            'middleware' => [\App\Http\Middleware\Cors::class],
 
             // Which HTTP methods to support; must be given in UPPERCASE!
-            'method' => ['GET', 'POST'],
+            'method' => ['GET', 'POST', 'OPTIONS'],
 
             // An array of middlewares, overrides the global ones
             'execution_middleware' => null,

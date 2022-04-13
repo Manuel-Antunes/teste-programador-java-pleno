@@ -25,6 +25,6 @@ class User extends Model
 
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'user_code', 'code');
     }
 }

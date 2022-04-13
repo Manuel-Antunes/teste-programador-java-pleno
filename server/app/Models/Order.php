@@ -20,16 +20,16 @@ class Order extends Model
         'number',
         'issue_date',
         'desc',
-        'total_price'
+        'user_code'
     ];
 
-    public function users()
+    public function products() 
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_code', 'id', 'code');
     }
 
-    public function products()
+    public function user()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(User::class, 'user_code', 'code');
     }
 }
