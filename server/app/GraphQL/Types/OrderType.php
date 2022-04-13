@@ -21,8 +21,9 @@ class OrderType extends GraphQLType
     {
         return [
             'number' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Order number'
+                'type' => Type::nonNull(Type::int()),
+                'description' => 'Order number',
+                'alias' => 'id'
             ],
             'issue_date' => [
                 'type' => Type::nonNull(Type::string()),
@@ -36,13 +37,13 @@ class OrderType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Order total price'
             ],
-            'users' => [
+            'user' => [
                 'type' => GraphQL::type('User'),
                 'description' => 'Order user'
             ],
             'products' => [
                 'type' => Type::listOf(GraphQL::type('Product')),
-                'description' => 'Products list'
+                'description' => 'Products list',
             ]
         ];
     }

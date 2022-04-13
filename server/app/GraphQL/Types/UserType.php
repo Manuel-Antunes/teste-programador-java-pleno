@@ -42,7 +42,8 @@ class UserType extends GraphQLType
             ],
             'orders' => [
                 'type' => Type::listOf(GraphQL::type('Order')),
-                'description' => 'Lista de pedidos'
+                'description' => 'Lista de pedidos',
+                'always' => ['desc', 'products']
             ]
         ];
     }

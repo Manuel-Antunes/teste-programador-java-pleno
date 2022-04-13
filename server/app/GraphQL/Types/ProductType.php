@@ -24,16 +24,20 @@ class ProductType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Product code'
             ],
+            'name' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'Product name'
+            ],
             'desc' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Product description'
             ],
             'units' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'Product units'
             ],
             'price' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::float()),
                 'description' => 'Product price'
             ],
             'orders' => [
