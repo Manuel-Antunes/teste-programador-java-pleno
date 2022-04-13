@@ -22,9 +22,9 @@ class OrderQuery extends Query
     public function args(): array
     {
         return [
-            'number' => [
-                'name' => 'number',
-                'type' => Type::string(),
+            'id' => [
+                'name' => 'id',
+                'type' => Type::int(),
                 'rules' => ['required']
             ]
         ];
@@ -32,6 +32,6 @@ class OrderQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Order::where('number', $args['number'])->first();
+        return Order::where('id', $args['id'])->first();
     }
 }
