@@ -2,7 +2,7 @@
   <div class="container-lg">
       <div class="row justify-content-center my-5">
         <div class="col-lg-6">
-          <form @submit.prevent="createProductHandler">
+          <form @submit.prevent="submit">
             <label for="description" class="form-label"></label>
             <div class="input-group">
               <input type="text" id="description" class="form-control" v-model="description" placeholder="Nome do produto"/>
@@ -25,13 +25,10 @@
 </template>
 
 <script>
-import apolloClient from "../../apollo/client"
-import { createProduct } from "../../apollo/mutations/createProduct"
-
 export default {
     name: "ProductForm",
     methods: {
-      async createProductHandler() {
+      submit() {
 
         const formData = {
           description: this.description,
@@ -39,17 +36,7 @@ export default {
           price: this.price
         }
 
-        try {
-          const { data } = await apolloClient.mutate(createProduct(formData))
-          this.$emit("productCreated", data)
-        } 
-        catch(err) {
-          this.$swal({
-              icon: 'error',
-              title: 'Oops...',
-              text: err.message,
-          })
-        }
+        this.$emit("onSubmit", formData)
       }
     }
 }
