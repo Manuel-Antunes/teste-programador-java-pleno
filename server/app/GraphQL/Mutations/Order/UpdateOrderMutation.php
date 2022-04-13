@@ -22,22 +22,19 @@ class UpdateOrderMutation extends Mutation
     public function args(): array
     {
         return [
-            'number' => [
-                'name' => 'number',
-                'type' => Type::nonNull(Type::string()),
-            ],
-            'issue_date' => [
-                'name' => 'issue_date',
-                'type' => Type::nonNull(Type::string()),
-            ],
             'desc' => [
                 'name' => 'desc',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::string())
             ],
-            'total_price' => [
-                'name' => 'total_price',
-                'type' => Type::nonNull(Type::string()),
+            'product_ids' => [
+                'name' => 'product_ids',
+                'type' => Type::nonNull(Type::listOf(Type::string())),
             ],
+            'user_code' => [
+                'name' => 'user_code',
+                'type' => Type::nonNull(Type::string()),
+                'rules' => ['exists:users,code']
+            ]
         ];
     }
 
