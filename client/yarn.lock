@@ -1578,6 +1578,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+sweetalert2@11.x, sweetalert2@^11.4.8:
+  version "11.4.8"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.4.8.tgz#f436eb34107c5637a0278fa7330edc722090ebbb"
+  integrity sha512-BDS/+E8RwaekGSxCPUbPnsRAyQ439gtXkTF/s98vY2l9DaVEOMjGj1FaQSorfGREKsbbxGSP7UXboibL5vgTMA==
+
 symbol-observable@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-4.0.0.tgz#5b425f192279e87f2f9b937ac8540d1984b39205"
@@ -1692,6 +1697,13 @@ vue-router@4:
   integrity sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==
   dependencies:
     "@vue/devtools-api" "^6.0.0"
+
+vue-sweetalert2@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/vue-sweetalert2/-/vue-sweetalert2-5.0.2.tgz#b34f21f551aaefb88d94991daf7528913f66cefe"
+  integrity sha512-28pcpmvaFxwoXIUkOWwhZhmsV749jXxha8JicwPoSKyFKR5FhIaZU6UHO5WlUCLIVUI6sAWY6WngK2x/iXYwZg==
+  dependencies:
+    sweetalert2 "11.x"
 
 vue@^3.2.25:
   version "3.2.31"
