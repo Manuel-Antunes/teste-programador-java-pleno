@@ -2,6 +2,12 @@
     <div class="container mt-5">
         <div class="text-center mt-5 d-flex justify-content-between container">
             <h3>Pedidos do cliente: {{customer.name}}</h3>
+            <div>
+                <router-link to="/clients/create">
+                    <button class="btn btn-outline-secondary me-3">Editar dados do cliente</button>
+                </router-link>
+                <button class="btn btn-outline-danger">Excluir cliente</button>
+            </div>
         </div>
         <ul class="list-group">
         <li v-for="(order) in customer.orders" :key="order.code" class="list-group-item">
