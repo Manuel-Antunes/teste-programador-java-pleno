@@ -32,7 +32,7 @@ class UpdateProductMutation extends Mutation
             ],
             'units' => [
                 'name' => 'units',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
             ],
             'price' => [
                 'name' => 'price',

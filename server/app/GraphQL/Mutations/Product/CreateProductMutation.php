@@ -24,7 +24,12 @@ class CreateProductMutation extends Mutation
         return [
             'code' => [
                 'name' => 'code',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
+
+            ],
+            'name' => [
+                'name' => 'name',
+                'type' => Type::nonNull(Type::string())
             ],
             'desc' => [
                 'name' => 'desc',
@@ -32,21 +37,19 @@ class CreateProductMutation extends Mutation
             ],
             'units' => [
                 'name' => 'units',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
             ],
             'price' => [
                 'name' => 'price',
-                'type' => Type::nonNull(Type::string()),
-            ],
-            'email' => [
-                'name' => 'email',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::float()),
             ],
         ];
     }
 
     public function resolve($root, $args)
     {
+        $args['code'] = sha1(time());
+
         $product = new Product();
         $product->fill($args);
         $product->save();
