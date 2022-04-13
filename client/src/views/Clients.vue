@@ -11,7 +11,6 @@
 
 <script>
 import ClientList from "../components/Clients/ClientList.vue"
-import { getUsers } from "../apollo/queries/getUsers"
 
 export default {
     name: "Clients",

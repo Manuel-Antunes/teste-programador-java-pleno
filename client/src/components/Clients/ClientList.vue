@@ -1,6 +1,7 @@
 <template>
     <div class="text-center mt-5 mb-5 container d-flex flex-wrap">
         <!-- <p>Ainda não há clientes cadastrados</p> -->
+        <!-- v-for for each card passing data via props -->
         <ClientCard />
     </div>
 </template>
