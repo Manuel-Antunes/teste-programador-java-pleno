@@ -1,5 +1,5 @@
 <template>
-  <ProductForm @productCreated="onProductCreated" />
+  <ProductForm @onSubmit="onSubmit" />
 </template>
 
 <script>
@@ -10,7 +10,17 @@ export default {
         ProductForm
     },
     methods: {
-      onProductCreated() {
+      onSubmit() {
+        try {
+          const { data } = await apolloClient.mutate(createProduct(formData))
+        } 
+        catch(err) {
+          this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.message,
+          })
+        }
         this.$router.push({
           path: "/products"
         })
