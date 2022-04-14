@@ -7,6 +7,7 @@ export const getUsers = gql`
             user_name
             cpf
             email
+            phone_number
         } 
     }
 `
