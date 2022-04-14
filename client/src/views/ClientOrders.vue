@@ -1,8 +1,10 @@
 <template>
   <div class="container mt-5">
-    <div class="text-center mt-5 d-flex justify-content-between container">
+    <div
+      class="text-center mt-5 d-flex justify-content-between container flex-column flex-md-row"
+    >
       <h3>Pedidos do cliente: {{ customer.user_name }}</h3>
-      <div>
+      <div class="d-flex justify-content-around">
         <router-link :to="`/clients/${customer.code}/edit`">
           <button class="btn btn-outline-secondary me-md-3">
             Editar dados do cliente
