@@ -49,13 +49,33 @@ export default {
     methods: {
       async handleDelete() {
         try {
-          await apolloClient.mutate({
-              mutation: deleteProduct,
-              variables: {
-                code: this.code
+          this.$swal({
+            title: 'Tem certeza ?',
+            text: "Você não será capaz de reverter isso!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!',
+            cancelButtonText: "Cancelar"
+          }).then(async (result) => {
+              if (result.isConfirmed) {
+                 this.$swal(
+                  'Excluído!',
+                  'o produto foi deletado com sucesso',
+                  'success'
+                )
+                await apolloClient.mutate({
+                  mutation: deleteProduct,
+                  variables: {
+                    code: this.code
+                  }
+                })
+                this.$emit("onDelete", this.code)
               }
-          })
-          this.$emit("onDelete", this.code)
+            })
+
+          
         } 
         catch(err) {
           this.$swal({

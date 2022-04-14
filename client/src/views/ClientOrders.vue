@@ -61,16 +61,36 @@ export default {
     methods: {
         async handleDelete() {
             try {
-                await apolloClient.mutate({
-                    mutation: deleteUser,
-                    variables: {
-                        code: this.$route.params.id
-                    },
-                    fetchPolicy: "no-cache"
+                this.$swal({
+                    title: 'Tem certeza ?',
+                    text: "Você não será capaz de reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sim, deletar!',
+                    cancelButtonText: "Cancelar"
+                }).then(async (result) => {
+                    if(result.isConfirmed) {
+                        this.$swal(
+                            'Excluído!',
+                            'o cliente foi deletado com sucesso',
+                            'success'
+                        )
+                        await apolloClient.mutate({
+                            mutation: deleteUser,
+                            variables: {
+                                code: this.$route.params.id
+                            },
+                            fetchPolicy: "no-cache"
+                        })
+                        this.$router.push({
+                             path: "/clients"
+                        })
+                    }
                 })
-             this.$router.push({
-                path: "/clients"
-             })
+  
+             
             } 
             catch(err) {
                  this.$swal({
