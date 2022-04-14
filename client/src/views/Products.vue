@@ -1,4 +1,5 @@
 <template>
+<div>
    <div class="text-center mt-5 d-flex justify-content-between container">
       <h3>Adicione um novo produto</h3>
       <router-link class="btn btn-success" to="/products/create">Adicionar</router-link>
@@ -7,6 +8,8 @@
       <h3 class="text-light">Produtos cadastrados:</h3>
     </div>
     <ProductList />
+</div>
+
 </template>
 
 <script>
