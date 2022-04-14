@@ -50,7 +50,9 @@
               Não há produtos nesse pedido
             </p>
             <tr v-for="product in order.products" :key="product.code">
-              <th scope="row">{{ product.code }}</th>
+              <th scope="row">
+                {{ product.code }}
+              </th>
               <td>{{ product.name }}</td>
               <td>
                 {{
@@ -63,6 +65,7 @@
             </tr>
           </tbody>
         </table>
+
         <div class="d-flex justify-content-end mt-3">
           <router-link
             :to="`/clients/${customer.code}/orders/${order.number}/products/add`"
