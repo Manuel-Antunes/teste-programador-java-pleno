@@ -1,21 +1,23 @@
 <script>
-import Navbar from './components/Navbar.vue';
+import Navbar from "./components/Navbar.vue";
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
   },
   data() {
     return {
       logo_src: "./assets/logo.png",
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <template>
-  <Navbar :logo="logo_src"/>
-  <router-view />
+  <div>
+    <Navbar :logo="logo_src" />
+    <router-view />
+  </div>
 </template>
 
 <style>
