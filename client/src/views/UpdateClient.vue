@@ -53,7 +53,6 @@ export default {
                 })
             } 
             catch(err) {
-                console.log(JSON.stringify(err))
                 this.$swal({
                     icon: 'error',
                     title: 'Oops...',

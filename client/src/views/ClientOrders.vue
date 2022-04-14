@@ -80,7 +80,8 @@ export default {
             query: getUser,
             variables: {
                 code
-            }
+            },
+            fetchPolicy: "no-cache"
         })
         this.customer = data.user  
     }
