@@ -25,7 +25,8 @@ export default {
     async mounted() {
         try {
             const { data } = await apolloClient.query({
-                query: getUsers
+                query: getUsers,
+                fetchPolicy: "no-cache"
             })
             this.customers = data.users
         }
