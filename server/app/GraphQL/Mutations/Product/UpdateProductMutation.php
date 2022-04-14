@@ -26,6 +26,10 @@ class UpdateProductMutation extends Mutation
                 'name' => 'code',
                 'type' => Type::nonNull(Type::string()),
             ],
+            'name' => [
+                'name' => 'name',
+                'type' => Type::nonNull(Type::string()),
+            ],
             'desc' => [
                 'name' => 'desc',
                 'type' => Type::nonNull(Type::string()),
@@ -36,10 +40,6 @@ class UpdateProductMutation extends Mutation
             ],
             'price' => [
                 'name' => 'price',
-                'type' => Type::nonNull(Type::string()),
-            ],
-            'email' => [
-                'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
         ];
