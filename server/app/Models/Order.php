@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Product;
 
 class Order extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'issue_date' => 'date',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -20,8 +25,19 @@ class Order extends Model
         'number',
         'issue_date',
         'desc',
-        'user_code'
+        'user_code',
     ];
+
+    public function totalPrice(): Attribute
+    {
+        $totalPrice = 0;
+        foreach ($this->products as $product) {
+            $totalPrice = $totalPrice + $product->price;
+        }
+        return Attribute::make(
+            get: fn () => $totalPrice,
+        );
+    }
 
     public function products() 
     {

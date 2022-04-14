@@ -34,7 +34,7 @@ class OrderType extends GraphQLType
                 'description' => 'Order description'
             ],
             'total_price' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::float()),
                 'description' => 'Order total price'
             ],
             'user' => [
