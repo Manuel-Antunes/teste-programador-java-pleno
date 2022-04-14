@@ -3,13 +3,17 @@
       <div class="row justify-content-center my-5">
         <div class="col-lg-6">
           <form @submit.prevent="submit">
+            <label for="name" class="form-label"></label>
+            <div class="input-group">
+              <input type="text" id="name" class="form-control" v-model="name" placeholder="Nome do produto"/>
+            </div>
             <label for="description" class="form-label"></label>
             <div class="input-group">
-              <input type="text" id="description" class="form-control" v-model="description" placeholder="Nome do produto"/>
+              <input type="text" id="description" class="form-control" v-model="description" placeholder="Descrição do produto"/>
             </div>
-            <label for="unities" class="form-label"></label>
+            <label for="units" class="form-label"></label>
             <div class="input-group">
-              <input type="number" id="unities" class="form-control" v-model="unities" placeholder="Unidades" />
+              <input type="number" id="units" class="form-control" v-model="units" placeholder="Unidades" />
             </div>
             <label for="price" class="form-label"></label>
             <div class="input-group">
@@ -31,8 +35,9 @@ export default {
       submit() {
 
         const formData = {
+          name: this.name,
           description: this.description,
-          unities: this.unities,
+          units: this.units,
           price: this.price
         }
 
