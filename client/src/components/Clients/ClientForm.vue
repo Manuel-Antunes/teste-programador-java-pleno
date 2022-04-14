@@ -46,19 +46,28 @@ export default {
           this.$emit("onSubmit", formData)        
       }
     },
-    mounted() {
-      if(this.data) {
-        this.name = this.data.name
+    data() {
+      return {
+          name: null,
+          cpf: null,
+          phone: null,
+          email: null
+      }
+    },
+    watch: {
+      data() {
+        if(this.data) {
+        this.name = this.data.user_name
         this.cpf = this.data.cpf
-        this.phone = this.data.phone
+        this.phone = this.data.phone_number
         this.email = this.data.email
+      }
       }
     },
     props: {
       data: {
         type: Object,
         required: false,
-        default: undefined
       }
     }
 }
