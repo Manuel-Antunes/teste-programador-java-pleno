@@ -14,7 +14,6 @@
 
 <script>
 import ProductList from "../components/Products/ProductList.vue"
-import { getProducts } from "../apollo/queries/getProducts"
 
 export default {
     name: "Products",
