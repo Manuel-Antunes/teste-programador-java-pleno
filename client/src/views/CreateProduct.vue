@@ -4,15 +4,24 @@
 
 <script>
 import ProductForm from "../components/Products/ProductForm.vue"
+import apolloClient from "../apollo/client"
+import { createProduct } from "../apollo/mutations/createProduct"
+
 export default {
     name: "CreateProduct",
     components: {
         ProductForm
     },
     methods: {
-      onSubmit() {
+      async onSubmit(formData) {
         try {
-          const { data } = await apolloClient.mutate(createProduct(formData))
+          const { data } = await apolloClient.mutate({
+            mutation: createProduct,
+            variables: formData
+          })
+          this.$router.push({
+            path: "/products"
+        })
         } 
         catch(err) {
           this.$swal({
@@ -21,9 +30,7 @@ export default {
               text: err.message,
           })
         }
-        this.$router.push({
-          path: "/products"
-        })
+        
       }
     }
 }
