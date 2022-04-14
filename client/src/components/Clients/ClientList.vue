@@ -19,13 +19,23 @@ export default {
     },
     data(){
         return {
-            customers: [{name: "João", cpf: "112301423-55", phone: "(82)9999999", email:"sexo123@gmail.com", code: "123123"}]
+            customers: []
         }
     },
     async mounted() {
-        const { data } = await apolloClient.query(getUsers())
-        for(cust of data) {
-            this.customers.push(cust)
+        try {
+            const { data } = await apolloClient.query({
+                query: getUsers
+            })
+            console.log(data)
+            this.customers = data.users
+        }
+        catch(err) {
+            this.$swal({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.message,
+            })
         }
     },
     methods: {}
