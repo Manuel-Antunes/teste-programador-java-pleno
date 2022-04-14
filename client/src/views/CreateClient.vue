@@ -1,5 +1,5 @@
 <template>
-  <ClientForm @onSubmit="onSubmit(formData)" />
+  <ClientForm @onSubmit="onSubmit" />
 </template>
 
 <script>
@@ -13,21 +13,25 @@ export default {
         ClientForm
     },
     methods: {
-      async onSubmit() {
+      async onSubmit(formData) {
         try {
-          const { data } = await apolloClient.mutate(createUser(formData))
+          const { data } = await apolloClient.mutate({
+            mutation: createUser,
+            variables: formData
+          })
+          console.log(data)
+          this.$router.push({
+            path: "/clients"
+          })
         } 
         catch(err) {
+          console.log(JSON.stringify(err))
           this.$swal({
                 icon: 'error',
                 title: 'Oops...',
                 text: err.message,
           })
         }
-
-        this.$router.push({
-          path: "/clients"
-        })
       }
     }
 }
