@@ -31,6 +31,14 @@
 <script>
 export default {
     name: "ProductForm",
+    data() {
+      return {
+        name: null,
+        description: null,
+        units: null,
+        price: null
+      }
+    },
     methods: {
       submit() {
 
@@ -42,6 +50,22 @@ export default {
         }
 
         this.$emit("onSubmit", formData)
+      }
+    },
+    watch: {
+      data() {
+        if(this.data) {
+          this.name = this.data.name
+          this.description = this.data.desc
+          this.units = this.data.units
+          this.price = this.data.price
+        }
+      }
+    },
+    props: {
+      data: {
+        type: Object,
+        required: false
       }
     }
 }
