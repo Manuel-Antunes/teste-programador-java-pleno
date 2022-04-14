@@ -131,7 +131,6 @@ export default {
     },
     async handleUpdateOrder() {
       try {
-        this.order.products.push(...this.checkedProducts);
         this.$swal({
           title: "Tem certeza ?",
           text: "Essa operação irá atualizar os produtos no pedido!",
@@ -148,6 +147,7 @@ export default {
               "Os produtos foram atualizados com sucesso",
               "success"
             );
+            this.order.products.push(...this.checkedProducts);
             await apolloClient.mutate({
               mutation: attachProduct,
               variables: {
