@@ -44,18 +44,29 @@ class CreateUserMutation extends Mutation
     protected function rules(array $args = []): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users'],
             'phone_number' => ['required'],
             'user_name' => ['required'],
-            'cpf' => ['required']
+            'cpf' => ['required', 'unique:users']
+        ];
+    }
+
+    public function validationErrorMessages(array $args = []): array
+    {
+        return [
+            'cpf.unique' => 'CPF já cadastrado!',
+            'email.unique' => 'E-mail já cadastrado',
+            // 'email.required' => 'Please enter your email address',
+            // 'email.email' => 'Please enter a valid email address',
+            // 'email.exists' => 'Sorry, this email address is already in use',
         ];
     }
 
     public function resolve($root, $args)
     {
         $args['code'] = sha1(time());
-        
-        if(strlen(preg_replace( '/[^0-9]/is', '', $args['cpf'])) !== 11){
+
+        if (strlen(preg_replace('/[^0-9]/is', '', $args['cpf'])) !== 11) {
             return null;
         }
 
