@@ -28,19 +28,19 @@ class UpdateProductMutation extends Mutation
             ],
             'name' => [
                 'name' => 'name',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'desc' => [
                 'name' => 'desc',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'units' => [
                 'name' => 'units',
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
             ],
             'price' => [
                 'name' => 'price',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::float(),
             ],
         ];
     }
