@@ -24,7 +24,7 @@ class UpdateUserMutation extends Mutation
         return [
             'code' => [
                 'name' => 'code',
-                'type' => Type::string(),
+                'type' => Type::nonNull(Type::string()),
             ],
             'user_name' => [
                 'name' => 'user_name',
@@ -48,7 +48,16 @@ class UpdateUserMutation extends Mutation
     protected function rules(array $args = []): array
     {
         return [
-            'email' => ['email'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['required'],
+            'user_name' => ['required']
+        ];
+    }
+
+    public function validationErrorMessages(array $args = []): array
+    {
+        return [
+            'email.email' => 'E-mail inválido!'
         ];
     }
 
