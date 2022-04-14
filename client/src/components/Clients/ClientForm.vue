@@ -67,7 +67,7 @@ export default {
     props: {
       data: {
         type: Object,
-        required: false,
+        required: false
       }
     }
 }

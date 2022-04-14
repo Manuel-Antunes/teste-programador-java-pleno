@@ -7,8 +7,10 @@
         <li class="list-group-item bg-success text-light">R$ {{price}}</li>
         <li class="list-group-item bg-secondary text-light">
           <div class="d-flex justify-content-around">
-            <button class="btn btn-light">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
+            <router-link :to="`/products/${this.code}/edit`">
+              <button class="btn btn-light">Editar</button>
+            </router-link>
+            <button class="btn btn-danger" @click="handleDelete">Excluir</button>
           </div>
         </li>
 
@@ -17,6 +19,9 @@
 </template>
 
 <script>
+import apolloClient from "../../apollo/client"
+import { deleteProduct } from "../../apollo/mutations/deleteProduct"
+
 export default {
     name: "ProductCard",
     props: {
@@ -35,8 +40,31 @@ export default {
       price: {
         type: Number,
         required: true
+      },
+      code: {
+        type: String,
+        required: true
       }
-
+    },
+    methods: {
+      async handleDelete() {
+        try {
+          await apolloClient.mutate({
+              mutation: deleteProduct,
+              variables: {
+                code: this.code
+              }
+          })
+          this.$emit("onDelete", this.code)
+        } 
+        catch(err) {
+          this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.message,
+          })
+        }
+      }
     }
 }
 </script>

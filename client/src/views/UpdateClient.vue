@@ -46,7 +46,10 @@ export default {
                     variables: {
                         code,
                         ...formData
-                    }
+                    },
+                })
+                this.$router.push({
+                    path: `/clients/${code}/orders`
                 })
             } 
             catch(err) {

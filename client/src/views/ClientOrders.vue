@@ -55,14 +55,15 @@ export default {
         async handleDelete() {
             try {
                 await apolloClient.mutate({
-                mutation: deleteUser,
-                variables: {
-                    code: this.$route.params.id
-                }
+                    mutation: deleteUser,
+                    variables: {
+                        code: this.$route.params.id
+                    },
+                    fetchPolicy: "no-cache"
                 })
              this.$router.push({
                 path: "/clients"
-            })
+             })
             } 
             catch(err) {
                  this.$swal({
