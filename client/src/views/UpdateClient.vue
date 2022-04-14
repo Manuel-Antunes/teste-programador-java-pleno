@@ -1,11 +1,12 @@
 <template>
-    <ClientForm @onSubmit="onSubmit"/>
+    <ClientForm @onSubmit="onSubmit" :data="user" />
 </template>
 
 <script>
 import ClientForm from "../components/Clients/ClientForm.vue"
 import apolloClient from "../apollo/client"
 import { updateUser } from "../apollo/mutations/updateUser"
+import { getUser } from "../apollo/queries/getUser"
 
 export default {
     name: "UpdateClient",
@@ -14,20 +15,42 @@ export default {
     },
     data() {
         return {
-            user: {
-                name: "Manuel ChupaPikax",
-                cpf: "112301423-55",
-                phone: "(65) 99999999",
-                email: "manuelchupabem@email.com"
-            }
+            user: {}
+        }
+    },
+    async mounted() {
+        try {
+            const code = this.$route.params.id
+            const { data } = await apolloClient.query({
+                query: getUser,
+                variables: {
+                    code
+                }
+            })
+            this.user = data.user
+        }
+        catch(err) {
+            this.$swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.message,
+          })
         }
     },
     methods: {
-        async onSubmit() {
+        async onSubmit(formData) {
             try {
-                const {data} = await apolloClient.mutate(updateUser(formData))
+                const code = this.$route.params.id
+                const {data} = await apolloClient.mutate({
+                    mutation: updateUser,
+                    variables: {
+                        code,
+                        ...formData
+                    }
+                })
             } 
             catch(err) {
+                console.log(JSON.stringify(err))
                 this.$swal({
                     icon: 'error',
                     title: 'Oops...',
