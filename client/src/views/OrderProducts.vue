@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                      <tr v-for="(product) in nonEarnedProducts" :key="product.code">
-                        <th scope="row">{{product.code}}</th>
+                        <th scope="row">{{product.code && product.code.slice(0, 3) + "..."}}</th>
                         <td>{{product.name}}</td>
                         <td>{{product.price}}</td>
                         <td><input type="checkbox" @change="handleCheckbox($event, product)"/></td>
@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                      <tr v-for="(product) in order.products" :key="product.code">
-                        <th scope="row">{{product.code}}</th>
+                        <th scope="row">{{product.code && product.code.slice(0, 3) + "..."}}</th>
                         <td>{{product.name}}</td>
                         <td>{{product.price}}</td>
                         <td><button class="btn btn-danger" @click="handleRemoveProduct(product.code)">Remover</button></td>
@@ -56,7 +56,8 @@
 <script>
 import apolloClient from "../apollo/client"
 import { getProducts } from "../apollo/queries/getProducts"
-// import { getOrder } from "../apollo/queries/getOrder"
+import { getOrder } from "../apollo/queries/getOrder"
+import { attachProduct } from "../apollo/mutations/attachProduct"
 
 export default {
     name: "OrderProducts",
@@ -69,16 +70,34 @@ export default {
             checkedProducts: []
         }
     },
-    // async mounted() {
-    //     // try {
-    //     //     const { data } = await apolloClient({
-    //     //         // query: getOrder
-    //     //     })
-    //     // } 
-    //     catch(err) {
+    async mounted() {
+        try {
+            
+            const { data: {order} } = await apolloClient.query({
+                query: getOrder,
+                variables: {
+                    id: parseInt(this.$route.params.order_id, 10)
+                },
+                fetchPolicy: "no-cache"
+            })
 
-    //     }
-    // },
+            const { data: {products} } = await apolloClient.query({
+                query: getProducts,
+                fetchPolicy: "no-cache"
+            })
+            console.log(products)
+            this.order = order
+            this.products = products
+        } 
+        catch(err) {
+            console.log(JSON.stringify(err))
+                this.$swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.message,
+                })
+        }
+    },
     methods: {
         handleCheckbox(e, product) {
             const checked = e.target.checked
@@ -88,9 +107,16 @@ export default {
                 this.checkedProducts.splice(this.checkedProducts.findIndex(p => p.code == product.code), 1)
             }
         },
-        handleUpdateOrder() {
-            // needed to change this function on the backend 
+        async handleUpdateOrder() {
             this.order.products.push(...this.checkedProducts)
+            await apolloClient.mutate({
+                mutation: attachProduct,
+                variables: {
+                    order_id: parseInt(this.$route.params.order_id, 10),
+                    product_ids: this.order.products.map(product => product.code)
+
+                }
+            })
             this.checkedProducts = []
         },
         handleRemoveProduct(productCode) {
