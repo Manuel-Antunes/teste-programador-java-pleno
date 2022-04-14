@@ -20,32 +20,34 @@
             }}</span
           >
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Preço</th>
-            </tr>
-          </thead>
-          <tbody>
-            <p v-if="order.products.length === 0" class="fw-bold mt-5">
-              Não há produtos nesse pedido
-            </p>
-            <tr v-for="product in order.products" :key="product.code">
-              <th scope="row">{{ product.code }}</th>
-              <td>{{ product.name }}</td>
-              <td>
-                {{
-                  product.price.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
-                }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              <p v-if="order.products.length === 0" class="fw-bold mt-5">
+                Não há produtos nesse pedido
+              </p>
+              <tr v-for="product in order.products" :key="product.code">
+                <th scope="row">{{ product.code }}</th>
+                <td>{{ product.name }}</td>
+                <td>
+                  {{
+                    product.price.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </li>
     </ul>
   </div>
