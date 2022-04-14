@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('desc');
+            $table->date('issue_date');
             $table->string('user_code');
             $table->foreign('user_code')->references('code')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();

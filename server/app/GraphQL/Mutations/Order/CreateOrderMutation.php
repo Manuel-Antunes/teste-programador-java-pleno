@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Order;
 
 use App\Models\Order;
+use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\User;
 use Rebing\GraphQL\Support\Mutation;
@@ -43,11 +44,13 @@ class CreateOrderMutation extends Mutation
 
     public function resolve($root, $args)
     {      
-        //$user = User::all()->where('code', $args['user_code'])->first();
+        $args['issue_date'] = Carbon::today();
         $order = new Order();
         $order->fill($args);
-        //$order->user()->associate($user);
+        
+        
         $order->save();
+
 
         $order->products()->sync($args['product_ids']);
 
