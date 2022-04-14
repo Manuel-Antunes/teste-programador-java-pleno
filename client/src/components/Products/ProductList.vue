@@ -41,7 +41,7 @@ export default {
     methods: {
         onDeleteHandler(code) {
             const auxProducts = [...this.products]
-            auxProducts.splice(auxProducts.find(c => c.code === code), 1)
+            auxProducts.splice(auxProducts.findIndex(c => c.code === code), 1)
             this.products = auxProducts
         }
     }
