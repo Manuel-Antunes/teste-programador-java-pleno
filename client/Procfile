@@ -1,0 +1,2 @@
+build: vite build
+web: vite preview
