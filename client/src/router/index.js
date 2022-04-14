@@ -10,6 +10,7 @@ import ClientOrders from "../views/ClientOrders.vue"
 import OrderProducts from "../views/OrderProducts.vue"
 import UpdateClient from "../views/UpdateClient.vue"
 import UpdateProduct from "../views/UpdateProduct.vue"
+import CreateOrder from "../views/CreateOrder.vue"
 
 const routes = [
     {
@@ -61,6 +62,11 @@ const routes = [
         path: "/products/:id/edit",
         name: "UpdateProduct",
         component: UpdateProduct
+    },
+    {
+        path: "/clients/:id/orders/add",
+        name: "CreateOrder",
+        component: CreateOrder
     }
 ]
 
