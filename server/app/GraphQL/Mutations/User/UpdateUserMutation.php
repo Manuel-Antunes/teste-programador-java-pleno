@@ -24,23 +24,23 @@ class UpdateUserMutation extends Mutation
         return [
             'code' => [
                 'name' => 'code',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'user_name' => [
                 'name' => 'user_name',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'cpf' => [
                 'name' => 'cpf',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'phone_number' => [
                 'name' => 'phone_number',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
             'email' => [
                 'name' => 'email',
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
             ],
         ];
     }
@@ -48,7 +48,7 @@ class UpdateUserMutation extends Mutation
     protected function rules(array $args = []): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['email'],
         ];
     }
 
@@ -56,7 +56,7 @@ class UpdateUserMutation extends Mutation
     {
 
         //$args['code'] = sha1(time());
-        if(strlen(preg_replace( '/[^0-9]/is', '', $args['cpf'])) !== 11){
+        if(isset($args['cpf']) && strlen(preg_replace( '/[^0-9]/is', '', $args['cpf'])) !== 11){
             return 'cpf invalido';
         }
 
