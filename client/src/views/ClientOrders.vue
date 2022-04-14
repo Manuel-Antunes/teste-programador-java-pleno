@@ -1,8 +1,10 @@
 <template>
   <div class="container mt-5">
-    <div class="text-center mt-5 d-flex justify-content-between container">
+    <div
+      class="text-center mt-5 d-flex justify-content-between container flex-column flex-md-row"
+    >
       <h3>Pedidos do cliente: {{ customer.user_name }}</h3>
-      <div>
+      <div class="d-flex justify-content-around">
         <router-link :to="`/clients/${customer.code}/edit`">
           <button class="btn btn-outline-secondary me-md-3">
             Editar dados do cliente
@@ -37,32 +39,37 @@
             }}</span
           >
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Preço</th>
-            </tr>
-          </thead>
-          <tbody>
-            <p v-if="order.products.length === 0" class="fw-bold mt-5">
-              Não há produtos nesse pedido
-            </p>
-            <tr v-for="product in order.products" :key="product.code">
-              <th scope="row">{{ product.code }}</th>
-              <td>{{ product.name }}</td>
-              <td>
-                {{
-                  product.price.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
-                }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              <p v-if="order.products.length === 0" class="fw-bold mt-5">
+                Não há produtos nesse pedido
+              </p>
+              <tr v-for="product in order.products" :key="product.code">
+                <th scope="row">
+                  {{ product.code }}
+                </th>
+                <td>{{ product.name }}</td>
+                <td>
+                  {{
+                    product.price.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div class="d-flex justify-content-end mt-3">
           <router-link
             :to="`/clients/${customer.code}/orders/${order.number}/products/add`"
