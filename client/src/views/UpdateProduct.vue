@@ -40,7 +40,6 @@ export default {
     methods: {
         async onSubmit(formData) {
             try {
-                console.log(formData)
                 const code = this.$route.params.id
                 await apolloClient.mutate({
                     mutation: updateProduct,
@@ -54,7 +53,6 @@ export default {
                 })
             } 
             catch(err) {
-                console.log(JSON.stringify(err))
                 this.$swal({
                     icon: 'error',
                     title: 'Oops...',
