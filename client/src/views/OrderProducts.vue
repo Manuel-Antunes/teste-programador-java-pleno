@@ -1,6 +1,8 @@
 <template>
+    <div>
+
     <div class="text-center mt-5 d-flex justify-content-between container">
-        <h3>Adicionar produtos no pedido {{order.id}}</h3>
+        <h3>Adicionar produtos no pedido</h3>
     </div>
     <div class="container mt-3">
         <div class="row">
@@ -48,18 +50,35 @@
         <button class="btn btn-secondary" @click="handleUpdateOrder">Atualizar pedido</button>
      </div>  
     </div>
+</div>
 </template>
 
 <script>
+import apolloClient from "../apollo/client"
+import { getProducts } from "../apollo/queries/getProducts"
+// import { getOrder } from "../apollo/queries/getOrder"
+
 export default {
     name: "OrderProducts",
     data() {
         return {
-            order: {products: [{name: "Calcinha preta", price: 88, code: "1231241241"}], issue_date: "13/04/2099", id: 9238219},
-            products: [{name: "Calcinha preta", price: 88, code: "1231241241"}, {name: "Limão com mel", price: 22, code: "1324151"}],
+            // order: {products: [{name: "Calcinha preta", price: 88, code: "1231241241"}], issue_date: "13/04/2099", id: 9238219},
+            // products: [{name: "Calcinha preta", price: 88, code: "1231241241"}, {name: "Limão com mel", price: 22, code: "1324151"}],
+            order: {},
+            products: [],
             checkedProducts: []
         }
     },
+    // async mounted() {
+    //     // try {
+    //     //     const { data } = await apolloClient({
+    //     //         // query: getOrder
+    //     //     })
+    //     // } 
+    //     catch(err) {
+
+    //     }
+    // },
     methods: {
         handleCheckbox(e, product) {
             const checked = e.target.checked
