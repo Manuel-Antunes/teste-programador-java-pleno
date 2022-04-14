@@ -1,17 +1,12 @@
 import { gql } from "@apollo/client/core"
 
-export const updateProduct = ({name, email, cpf, phone}) => {
-    return {
-        mutation: gql`
-            mutation {
-                updateProduct(user_name: "${name}", email: "${email}", cpf: "${cpf}", phone_number: "${phone}") {
-                    code
-                    user_name
-                    email
-                    cpf
-                    phone_number
-                }  
-            }
-        `
+export const updateProduct = gql`
+    mutation UpdateProduct($name: String!, $description: String!, $units: Int!, $price: Float!){
+        updateProduct(name: $name, desc:$description, units:$units,price:$price) {
+            name,
+            desc,
+            units,
+            price
+        }
     }
-}
+`
