@@ -4,7 +4,7 @@
       <h3>Pedidos do cliente: {{ customer.user_name }}</h3>
       <div>
         <router-link :to="`/clients/${customer.code}/edit`">
-          <button class="btn btn-outline-secondary me-3">
+          <button class="btn btn-outline-secondary me-md-3">
             Editar dados do cliente
           </button>
         </router-link>
