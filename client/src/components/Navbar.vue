@@ -2,7 +2,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
-        <!-- <img class="fluid" :src="logo" alt="vue" width="48px"/> -->
         Companhia do seu Zé
       </router-link>
       <button
