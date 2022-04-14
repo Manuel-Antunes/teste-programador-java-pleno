@@ -19,13 +19,11 @@ export default {
             mutation: createUser,
             variables: formData
           })
-          console.log(data)
           this.$router.push({
             path: "/clients"
           })
         } 
         catch(err) {
-          console.log(JSON.stringify(err))
           this.$swal({
                 icon: 'error',
                 title: 'Oops...',
