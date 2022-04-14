@@ -1,15 +1,16 @@
 <template>
     <div class="container mt-5">
         <div class="text-center mt-5 d-flex justify-content-between container">
-            <h3>Pedidos do cliente: {{customer.name}}</h3>
+            <h3>Pedidos do cliente: {{customer.user_name}}</h3>
             <div>
-                <router-link to="/clients/create">
+                <router-link :to="`/clients/${customer.code}/edit`">
                     <button class="btn btn-outline-secondary me-3">Editar dados do cliente</button>
                 </router-link>
-                <button class="btn btn-outline-danger">Excluir cliente</button>
+                <button class="btn btn-outline-danger" @click="handleDelete">Excluir cliente</button>
             </div>
         </div>
-        <ul class="list-group">
+        <p v-if="!customer.orders || customer.orders.length == 0" class="text-center mt-5">Nenhum pedido feito por esse cliente</p>
+        <ul class="list-group" v-else>
         <li v-for="(order) in customer.orders" :key="order.code" class="list-group-item">
             <span>{{order.issue_date}}</span>
             <table class="table">
@@ -39,12 +40,48 @@
 </template>
 
 <script>
+import apolloClient from "../apollo/client"
+import { getUser } from "../apollo/queries/getUser"
+import { deleteUser } from "../apollo/mutations/deleteUser"
+
 export default {
     name: "ClientOrders",
     data() {
         return {
-            customer: {name: "João", cpf: "112301423-55", phone: "(82)9999999", email:"sexo123@gmail.com", code: "123123", orders: [{products: [{name: "Calcinha preta", price: 88}], issue_date: "13/04/2099", id: 9238219}]}
+            customer: {}
         }
+    },
+    methods: {
+        async handleDelete() {
+            try {
+                await apolloClient.mutate({
+                mutation: deleteUser,
+                variables: {
+                    code: this.$route.params.id
+                }
+                })
+             this.$router.push({
+                path: "/clients"
+            })
+            } 
+            catch(err) {
+                 this.$swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err.message,
+                })
+            }
+        }
+    },
+   async mounted() {
+        const code = this.$route.params.id
+        const { data } = await apolloClient.query({
+            query: getUser,
+            variables: {
+                code
+            }
+        })
+        this.customer = data.user  
     }
 }
 </script>
