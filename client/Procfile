@@ -1,2 +1,1 @@
-build: vite build
-web: vite preview
+web: npm run start
