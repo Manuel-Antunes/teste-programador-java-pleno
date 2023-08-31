@@ -19,8 +19,11 @@ class ProductsQuery extends Query
         return Type::listOf(GraphQL::type('Product'));
     }
 
-    public function resolve($root, $args)
+    public function resolve($root, array $args, $context, ResolveInfo $info, SelectFields $fields)
     {
-        return Product::all();
+        $select = $fields->getSelect();
+        $with = $fields->getRelations();
+        $product = Product::select($select)->with($with);
+        return $product->get();
     }
 }

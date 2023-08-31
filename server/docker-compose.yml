@@ -9,3 +9,11 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
     ports:
       - 5432:${DB_PORT}
+  pg_admin:
+    image: "dpage/pgadmin4:5.1"
+    container_name: pg_admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "root@root.com"
+      PGADMIN_DEFAULT_PASSWORD: "secret"
+    ports:
+      - 5050

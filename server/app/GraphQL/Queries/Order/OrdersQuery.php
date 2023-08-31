@@ -28,6 +28,6 @@ class OrdersQuery extends Query
         $with = $fields->getRelations();
         $orders = Order::select($select)->with($with);
 
-        return Order::all();
+        return $orders->get();
     }
 }

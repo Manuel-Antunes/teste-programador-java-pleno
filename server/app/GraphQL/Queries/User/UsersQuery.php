@@ -24,11 +24,9 @@ class UsersQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $info, SelectFields $fields)
     {
-        // $select = $fields->getSelect();
-        // $with = $fields->getRelations();
-        // $users = User::select($select)->with($with);
-
-        // return $users->get();
-        return User::all();
+        $select = $fields->getSelect();
+        $with = $fields->getRelations();
+        $users = User::select($select)->with($with);
+        return $users->get();
     }
 }
